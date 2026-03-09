@@ -229,7 +229,18 @@ docs(readme): update installation guide
 | `test`     | Adding or correcting tests                           |
 | `chore`    | Maintenance changes outside src/test files           |
 
----
+### Live Demo
+
+Login: https://frontend-assessment-coral.vercel.app/login
+
+```
+Acc: user / password
+```
+
+Exercise 1: https://frontend-assessment-coral.vercel.app/
+or https://frontend-assessment-coral.vercel.app/exercise-1
+
+Exercise 2: https://frontend-assessment-coral.vercel.app/exercise-2
 
 ### Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `"banana"`?
 
