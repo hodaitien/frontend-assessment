@@ -1,8 +1,13 @@
-export type TLoginPayload = { username: string; password: string }
+export interface LoginPayloadType {
+  username: string
+  password: string
+}
 
-export type TLoginResponse = { accessToken: string }
+export interface LoginResponseType {
+  accessToken: string
+}
 
-export type TUser = {
+export interface UserType {
   username: string
   email: string
   firstName: string

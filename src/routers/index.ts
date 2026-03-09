@@ -20,21 +20,32 @@ const router = createRouter({
               },
               component: () => import('@/pages/login/IndexPage.vue')
             },
+
             {
               path: '/',
-              name: ROUTE_NAME.TOP,
+              name: ROUTE_NAME.DEFAULT,
               meta: {
                 layout: 'Default'
               },
-              component: () => import('@/pages/top/IndexPage.vue')
+              component: () => import('@/pages/exercise-1/IndexPage.vue')
             },
+
             {
-              path: '/template',
-              name: ROUTE_NAME.TEMPLATE,
+              path: '/exercise-1',
+              name: ROUTE_NAME.EXERCISE_1,
               meta: {
                 layout: 'Default'
               },
-              component: () => import('@/pages/template/IndexPage.vue')
+              component: () => import('@/pages/exercise-1/IndexPage.vue')
+            },
+
+            {
+              path: '/exercise-2',
+              name: ROUTE_NAME.EXERCISE_2,
+              meta: {
+                layout: 'Default'
+              },
+              component: () => import('@/pages/exercise-2/IndexPage.vue')
             }
           ]
         }

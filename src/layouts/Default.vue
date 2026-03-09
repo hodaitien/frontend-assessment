@@ -1,21 +1,13 @@
 <template>
-  <div class="flex">
-    <main class="w-full">
-      <div class="w-full">
-        <GHeader />
-      </div>
-      <div class="w-full">
-        <RouterView />
-      </div>
+  <div class="flex min-h-screen flex-col">
+    <!-- Header -->
 
-      <div class="w-full">
-        <GFooter />
-      </div>
+    <!-- Sidebar -->
+
+    <main class="flex-1">
+      <RouterView />
     </main>
+
+    <!-- Footer -->
   </div>
 </template>
-
-<script setup lang="ts">
-import GFooter from '@/layouts/footer/GFooter.vue'
-import GHeader from '@/layouts/header/GHeader.vue'
-</script>

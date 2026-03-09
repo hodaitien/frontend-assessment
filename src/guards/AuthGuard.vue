@@ -26,14 +26,12 @@ watch(
   (authenticated) => {
     if (!authenticated && !withoutAuthRoutes.includes(route.path)) {
       // Not authenticated and trying to access protected route
-
       router.push({ name: ROUTE_NAME.LOGIN })
     }
 
     if (authenticated && withoutAuthRoutes.includes(route.path)) {
       // Authenticated and trying to access login page
-
-      router.push('/')
+      router.push({ name: ROUTE_NAME.DEFAULT })
     }
 
     isReady.value = true

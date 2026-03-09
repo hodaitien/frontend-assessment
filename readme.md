@@ -1,20 +1,26 @@
-# Vue 3 + TypeScript Project
+# Vue 3 + TypeScript + Tailwind CSS Project
 
 ## Introduction
 
-This template provides a complete setup for Vue 3 to work in Vite with TypeScript. It's designed to help you quickly start a new Vue project with modern technologies and an optimized project structure.
+This project is a Vue 3 frontend assessment built with Vite and TypeScript.
+It implements two exercises (Hero Banner + Card Grid, Tabs + Accordion) behind an
+authenticated route, using a modern Atomic Design component hierarchy.
 
 ### System Requirements
 
 - Node: >= 18.16.0
-- NPM or Yarn
+- npm or Yarn
 
 ### Core Technology Versions
 
-- Vue: v3.5.13
-- Vite: v6.0.5
-- TypeScript: ~5.6.2
-- Tailwind CSS: v4.1.11
+| Package      | Version |
+| ------------ | ------- |
+| Vue          | v3.5.13 |
+| Vite         | v6.0.5  |
+| TypeScript   | ~5.6.2  |
+| Tailwind CSS | v4.1.11 |
+| Pinia        | v3.0.3  |
+| Vue Router   | v4.5.0  |
 
 ## Installation and Running the Project
 
@@ -40,13 +46,11 @@ npm run dev
 ### Building the Project for Production
 
 ```bash
-# Build for production
+# Build for production - outputs to dist/
 npm run build
 ```
 
-Build results will be saved in the `dist/` directory.
-
-### Running the Project in Production Mode (after building)
+### Previewing the Production Build
 
 ```bash
 # Preview production build
@@ -64,27 +68,32 @@ npm run lint
 
 ### Core
 
-- **Vue 3**: Modern UI library with Composition API, improved TypeScript support, and better performance.
-- **Vite**: Fast, efficient build tool designed for modern web development.
-- **TypeScript**: Static type support, helping to detect errors early and improve development experience.
+- **Vue 3** — Composition API, `<script setup>`, improved TypeScript support
+- **Vite** — Fast, efficient build tool designed for modern web development.
+- **TypeScript** — Static type support, helping to detect errors early and improve development experience.
+
+### State Management
+
+- **[Pinia](https://pinia.vuejs.org/)** — stores for auth state
 
 ### API Requests
 
-- **[Axios](https://axios-http.com/)**: Promise-based HTTP client for making API requests.
+- **[Axios](https://axios-http.com/)** — promise-based HTTP client
 
-### Routing
+### Routing & Auth
 
-- **[Vue Router](https://router.vuejs.org/)**: Official router for Vue.js, supporting dynamic routing and nested routes.
+- **[Vue Router](https://router.vuejs.org/)** — history-mode routing with a route-level `AuthGuard`
 
 ### Forms and Validation
 
-- **[VeeValidate](https://vee-validate.logaretm.com/v4/)**: Form validation library for Vue.js.
-- **[Yup](https://github.com/jquense/yup)**: Schema validation library, integrates well with VeeValidate.
+- **[VeeValidate](https://vee-validate.logaretm.com/v4/)** — reactive form validation
+- **[Yup](https://github.com/jquense/yup)** — schema validation integrated with VeeValidate
 
-### Styling
+### Styling & Animation
 
-- **[TailwindCSS](https://tailwindcss.com/)**: Utility-first CSS framework, helping to build UI quickly and consistently.
-- **[PostCSS](https://postcss.org/)**: Tool for transforming CSS with JavaScript plugins.
+- **[TailwindCSS v4](https://tailwindcss.com/)** — utility-first CSS
+- **[tailwind-merge](https://github.com/dcastil/tailwind-merge)** — safely merge Tailwind class strings
+- **[tw-animate-css](https://github.com/Wombosvideo/tw-animate-css)** — pre-built animation utilities
 
 ### Development Tools
 
@@ -96,70 +105,98 @@ npm run lint
 ## Project Structure
 
 ```
-.
-├── .husky/                 # Git hooks configuration
-├── public/                 # Public static assets
-├── src/
-│   ├── apis/              # API integration services
-│   │   ├── axiosClient.ts # Axios client configuration
-│   │   └── endpoints/     # API endpoints by module
-│   ├── assets/            # Project assets (images, styles, etc.)
-│   ├── components/        # Reusable components
-│   │   ├── utils/        # Common components (Button, Input, Modal...)
-│   │   └── features/      # Feature-specific components
-│   ├── layouts/           # Layout components
-│   │   ├── Default.vue
-│   │   └── ...
-│   ├── pages/             # Page components
-│   │   ├── Home/
-│   │   ├── Auth/
-│   │   └── ...
-│   ├── routers/           # Vue router configuration
-│   │  └── index.ts
-│   ├── types/             # TypeScript type definitions
-│   │   ├── auth.types.ts
-│   │   └── ...
-│   ├── utils/             # Utility functions
-│   │   ├── http.ts
-│   │   ├── localStorage.ts
-│   │   └── ...
-│   └── App.vue            # Root component
-├── .eslintrc.js           # ESLint configuration
-├── .prettierrc            # Prettier configuration
-├── commitlint.config.js   # Commitlint configuration
-├── index.html             # Entry HTML file
-├── package.json           # Project dependencies and scripts
-├── postcss.config.js      # PostCSS configuration
-├── tailwind.config.js     # Tailwind CSS configuration
-└── tsconfig.json          # TypeScript configuration
+src/
+├── apis/                   # HTTP service layer
+│   ├── auth.api.ts         # Authentication endpoints
+│   └── sections.api.ts     # Section/content endpoints
+├── assets/                 # Static assets
+│   ├── styles/main.css     # Global CSS entry point
+│   └── *.svg               # Image assets
+├── components/             # Atomic Design component hierarchy
+│   ├── atoms/              # Smallest reusable units
+│   │   ├── BaseButton.vue
+│   │   ├── BaseInput.vue
+│   │   └── LoadingSpinner.vue
+│   ├── molecules/          # Composed from atoms
+│   │   ├── AccordionPanel.vue
+│   │   ├── CardItem.vue
+│   │   └── TabsPanel.vue
+│   └── organisms/          # Feature-level sections
+│       ├── CardGrid.vue
+│       └── HeroBanner.vue
+├── constants/
+│   └── route-name.ts       # Typed route name enum
+├── guards/
+│   └── AuthGuard.vue       # Route-level auth guard component
+├── layouts/
+│   ├── Default.vue         # Authenticated layout (header/footer)
+│   ├── UnAuth.vue          # Unauthenticated layout (login)
+│   └── index.vue           # Layout switcher
+├── pages/
+│   ├── exercise-1/         # Hero Banner + Card Grid
+│   ├── exercise-2/         # Tabs + Accordion
+│   └── login/              # Login form
+├── routers/
+│   └── index.ts            # Route definitions
+├── schemas/
+│   └── auth.schema.ts      # Yup validation schema for login
+├── stores/
+│   └── auth.store.ts       # Pinia auth store
+├── types/                  # TypeScript type definitions
+│   ├── auth.type.ts
+│   ├── tab.type.ts
+│   └── utils.type.ts
+└── utils/
+    ├── http.ts             # Axios instance factory
+    └── localStorage.ts     # Token persistence helpers
 ```
+
+## Pages & Routes
+
+| Path          | Name       | Layout  | Description                      |
+| ------------- | ---------- | ------- | -------------------------------- |
+| `/`           | default    | Default | Redirects to Exercise 1          |
+| `/exercise-1` | exercise_1 | Default | Hero Banner + 3-column Card Grid |
+| `/exercise-2` | exercise_2 | Default | Tabs panel + Accordion panel     |
+| `/login`      | login      | UnAuth  | Login form (VeeValidate + Yup)   |
+
+All routes under `Default` layout are protected by `AuthGuard.vue`.
 
 ## Coding Conventions
 
 ### General Principles
 
-- **Clean Code**: Write code that is easy to read, understand, and maintain
-- **DRY (Don't Repeat Yourself)**: Avoid code duplication, prefer reusable components and functions
-- **Single Responsibility**: Each function, component, or module should have one clear purpose
-- **Consistency**: Follow established patterns and conventions throughout the project
+- **Clean Code** — readable, self-documenting code
+- **DRY** — extract reusable components and composables
+- **Single Responsibility** — one purpose per component/function
+- **Consistency** — follow existing patterns
 
-#### Custom CSS
+### Naming
 
-- Use `scoped` styles when possible
+- Components: PascalCase (`BaseButton.vue`)
+- Composables: camelCase prefixed with `use` (`useAuth`)
+- Constants: SCREAMING_SNAKE_CASE (`ROUTE_NAME.LOGIN`)
+- Prefix function names handling events with `on`. Example: `onToggle`
+- Prefix variable names returning true/false with `is`. Example: `isAuthenticated`
+- Use the `Type` suffix for TypeScript type definitions. Example: `TabItemType`
+
+### Styles
+
+- Use `scoped` styles inside `.vue` files
 - Use CSS custom properties for theme values
-- Follow BEM methodology for custom CSS classes
+- Use BEM methodology for custom (non-Tailwind) class names
 
-## 🔧 Git Hooks
+## Git Hooks
 
-The project uses Husky to manage Git hooks:
+| Hook         | Action                               |
+| ------------ | ------------------------------------ |
+| `pre-commit` | ESLint + Prettier check              |
+| `commit-msg` | Commitlint — validates commit format |
+| `pre-push`   | Final checks before remote push      |
 
-- `pre-commit`: Check linting and formatting before commit
-- `commit-msg`: Check commit message format
-- `pre-push`: Run checks before pushing code
+## Commit Rules
 
-## 📝 Commit Rules
-
-This project follows [Conventional Commits](https://www.conventionalcommits.org/) specification. Each commit message must be structured as follows:
+This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
 ```
 <type>(<scope>): <description>
@@ -168,7 +205,7 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 [optional footer(s)]
 ```
 
-Examples:
+### Examples
 
 ```
 feat(auth): implement login functionality
@@ -179,13 +216,57 @@ docs(readme): update installation guide
 
 ### Commit Types
 
-- `feat`: A new feature
-- `fix`: A bug fix
-- `build`: Changes that affect the build system or external dependencies
-- `ci`: Changes to CI configuration files and scripts
-- `docs`: Documentation only changes
-- `perf`: A code change that improves performance
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `style`: Changes that do not affect the meaning of the code
-- `test`: Adding missing tests or correcting existing tests
-- `chore`: Other changes that don't modify src or test files
+| Type       | When to use                                          |
+| ---------- | ---------------------------------------------------- |
+| `feat`     | A new feature                                        |
+| `fix`      | A bug fix                                            |
+| `build`    | Changes to the build system or external dependencies |
+| `ci`       | Changes to CI configuration files and scripts        |
+| `docs`     | Documentation-only changes                           |
+| `perf`     | Performance improvements                             |
+| `refactor` | Code change that is neither a fix nor a feature      |
+| `style`    | Formatting changes with no functional impact         |
+| `test`     | Adding or correcting tests                           |
+| `chore`    | Maintenance changes outside src/test files           |
+
+---
+
+### Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `"banana"`?
+
+#### 1. Spot the Unary Plus
+
+```js
+'b' + 'a' + + 'a' + 'a'
+            ^
+            This is a UNARY plus, not a binary concatenation operator.
+```
+
+```js
+'b' + 'a' + +'a' + 'a'
+```
+
+#### 2. Unary `+` coerces the operand to `number`
+
+```
++'a' // Number('a') → NaN
+typeof +'a' // "number"  ← NaN is of type number!
+```
+
+`'a'` is a non-numeric string, so `Number('a')` returns `NaN`. Despite its name, `NaN` has **type `number`** in JavaScript.
+
+#### 3. Apply `.toLowerCase()`
+
+```
+"baNaNa".toLowerCase() → "banana"
+```
+
+#### Full transformation chain
+
+```
+('b' + 'a' + + 'a' + 'a').toLowerCase()
+→ ('b' + 'a' + NaN + 'a').toLowerCase()    // → NaN
+→ ("ba" + NaN + 'a').toLowerCase()          // "b"+"a" = "ba"
+→ ("baNaN" + 'a').toLowerCase()             // "ba"+NaN → "baNaN"
+→ "baNaNa".toLowerCase()                    // "baNaN"+'a' = "baNaNa"
+→ "banana"
+```

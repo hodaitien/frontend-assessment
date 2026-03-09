@@ -1,9 +1,9 @@
-export type TErrorResponseApi<Data> = {
+export interface ErrorResponseApiType<Data> {
   message: string
   data?: Data
 }
 
-export type TSuccessResponseApi<Data> = {
+export interface SuccessResponseApiType<Data> {
   message: string
   data: Data
 }
