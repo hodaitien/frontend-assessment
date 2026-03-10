@@ -6,6 +6,19 @@ This project is a Vue 3 frontend assessment built with Vite and TypeScript.
 It implements two exercises (Hero Banner + Card Grid, Tabs + Accordion) behind an
 authenticated route, using a modern Atomic Design component hierarchy.
 
+### Live Demo
+
+Login: https://frontend-assessment-coral.vercel.app/login
+
+```
+Acc: user / password
+```
+
+Exercise 1: https://frontend-assessment-coral.vercel.app/
+or https://frontend-assessment-coral.vercel.app/exercise-1
+
+Exercise 2: https://frontend-assessment-coral.vercel.app/exercise-2
+
 ### System Requirements
 
 - Node: >= 18.16.0
@@ -101,6 +114,10 @@ npm run lint
 - **[Prettier](https://prettier.io/)**: Automatic code formatter, ensuring consistent code style.
 - **[Husky](https://typicode.github.io/husky/)**: Git hooks manager, automatically running scripts before commit/push.
 - **[Commitlint](https://commitlint.js.org/#/)**: Checks commit messages format according to conventions.
+
+### Deployment
+
+- **[Vercel](https://vercel.com/)**: A cloud platform for deploying and hosting modern web applications.
 
 ## Project Structure
 
@@ -228,19 +245,6 @@ docs(readme): update installation guide
 | `style`    | Formatting changes with no functional impact         |
 | `test`     | Adding or correcting tests                           |
 | `chore`    | Maintenance changes outside src/test files           |
-
-### Live Demo
-
-Login: https://frontend-assessment-coral.vercel.app/login
-
-```
-Acc: user / password
-```
-
-Exercise 1: https://frontend-assessment-coral.vercel.app/
-or https://frontend-assessment-coral.vercel.app/exercise-1
-
-Exercise 2: https://frontend-assessment-coral.vercel.app/exercise-2
 
 ### Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `"banana"`?
 
