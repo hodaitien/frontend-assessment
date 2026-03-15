@@ -3,7 +3,7 @@
 ## Introduction
 
 This project is a Vue 3 frontend assessment built with Vite and TypeScript.
-It implements two exercises (Hero Banner + Card Grid, Tabs + Accordion) behind an
+It implements three exercises (Hero Banner + Card Grid, Tabs + Accordion, Hero slide + Product Card) behind an
 authenticated route, using a modern Atomic Design component hierarchy.
 
 ### Live Demo
@@ -14,10 +14,11 @@ Login: https://frontend-assessment-coral.vercel.app/login
 Acc: user / password
 ```
 
-Exercise 1: https://frontend-assessment-coral.vercel.app/
-or https://frontend-assessment-coral.vercel.app/exercise-1
+Exercise 1: https://frontend-assessment-coral.vercel.app/exercise-1
 
 Exercise 2: https://frontend-assessment-coral.vercel.app/exercise-2
+
+Exercise 3: https://frontend-assessment-coral.vercel.app/ or https://frontend-assessment-coral.vercel.app/exercise-3
 
 ### System Requirements
 
@@ -152,6 +153,7 @@ src/
 ├── pages/
 │   ├── exercise-1/         # Hero Banner + Card Grid
 │   ├── exercise-2/         # Tabs + Accordion
+│   ├── exercise-3/         # Hero Slide + Product Card
 │   └── login/              # Login form
 ├── routers/
 │   └── index.ts            # Route definitions
@@ -172,9 +174,10 @@ src/
 
 | Path          | Name       | Layout  | Description                      |
 | ------------- | ---------- | ------- | -------------------------------- |
-| `/`           | default    | Default | Redirects to Exercise 1          |
+| `/`           | default    | Default | Redirects to Exercise 3          |
 | `/exercise-1` | exercise_1 | Default | Hero Banner + 3-column Card Grid |
 | `/exercise-2` | exercise_2 | Default | Tabs panel + Accordion panel     |
+| `/exercise-3` | exercise_3 | Default | Hero Slide + Product Card        |
 | `/login`      | login      | UnAuth  | Login form (VeeValidate + Yup)   |
 
 All routes under `Default` layout are protected by `AuthGuard.vue`.

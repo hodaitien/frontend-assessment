@@ -19,26 +19,30 @@
       </p>
 
       <div class="flex justify-center">
-        <BaseButton variant="outline" size="md" @click="$emit('read-more')">READ MORE</BaseButton>
+        <RouterLink
+          :to="to"
+          class="inline-flex cursor-pointer items-center justify-center rounded-full border-2 border-gray-900 bg-transparent px-6 py-2 text-xs font-semibold tracking-widest text-gray-900 transition-all duration-300 ease-out hover:bg-gray-900 hover:text-white active:scale-95"
+        >
+          READ MORE
+        </RouterLink>
       </div>
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
-import BaseButton from '@/components/atoms/BaseButton.vue'
+import type { RouteLocationRaw } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 interface Props {
   imageSrc: string
   imageAlt?: string
   text: string
+  to?: RouteLocationRaw
 }
 
 withDefaults(defineProps<Props>(), {
-  imageAlt: 'Card image'
+  imageAlt: 'Card image',
+  to: '/'
 })
-
-defineEmits<{
-  'read-more': []
-}>()
 </script>

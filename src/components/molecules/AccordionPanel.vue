@@ -64,19 +64,25 @@
 <script setup lang="ts">
 import type { TabItemType } from '@/types/tab.type'
 import { ChevronDown } from 'lucide-vue-next'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 interface Props {
   items: TabItemType[]
+  openIndex?: number | null
 }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  openIndex: 0
+})
 
-const openIndex = ref<number | null>(0)
+const emit = defineEmits<{
+  'update:openIndex': [value: number | null]
+}>()
 
-const isOpen = computed(() => (index: number) => openIndex.value === index)
+const isOpen = computed(() => (index: number) => props.openIndex === index)
 
 const onToggle = (index: number) => {
-  openIndex.value = isOpen.value(index) ? null : index
+  const next = isOpen.value(index) ? null : index
+  emit('update:openIndex', next)
 }
 </script>

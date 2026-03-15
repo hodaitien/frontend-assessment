@@ -27,7 +27,7 @@ const router = createRouter({
               meta: {
                 layout: 'Default'
               },
-              component: () => import('@/pages/exercise-1/IndexPage.vue')
+              component: () => import('@/pages/exercise-3/IndexPage.vue')
             },
 
             {
@@ -46,6 +46,15 @@ const router = createRouter({
                 layout: 'Default'
               },
               component: () => import('@/pages/exercise-2/IndexPage.vue')
+            },
+
+            {
+              path: '/exercise-3',
+              name: ROUTE_NAME.EXERCISE_3,
+              meta: {
+                layout: 'Default'
+              },
+              component: () => import('@/pages/exercise-3/IndexPage.vue')
             }
           ]
         }

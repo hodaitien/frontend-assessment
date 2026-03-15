@@ -73,12 +73,12 @@
         <div v-else key="content">
           <!-- Mobile: Accordion -->
           <div class="md:hidden" data-aos="fade-up" data-aos-duration="600">
-            <AccordionPanel :items="sections" />
+            <AccordionPanel v-model:open-index="activeSectionIndex" :items="sections" />
           </div>
 
           <!-- Desktop: Tabs -->
           <div class="hidden md:block" data-aos="fade-up" data-aos-duration="600">
-            <TabsPanel :items="sections" />
+            <TabsPanel v-model:active-index="activeSectionIndex" :items="sections" />
           </div>
         </div>
       </Transition>
@@ -96,6 +96,7 @@ import { onMounted, ref } from 'vue'
 
 const sections = ref<TabItemType[]>([])
 const isLoading = ref(true)
+const activeSectionIndex = ref<number | null>(0)
 
 const requirements = [
   'Display data in tabs on desktop.',

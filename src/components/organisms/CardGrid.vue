@@ -15,7 +15,7 @@
             :image-src="card.imageSrc"
             :image-alt="card.imageAlt"
             :text="card.text"
-            @read-more="$emit('read-more', index)"
+            :to="card.to"
           />
         </div>
       </div>
@@ -32,8 +32,4 @@ interface Props {
 }
 
 defineProps<Props>()
-
-defineEmits<{
-  'read-more': [index: number]
-}>()
 </script>

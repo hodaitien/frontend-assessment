@@ -9,7 +9,7 @@
           v-for="(item, index) in items"
           :key="index"
           class="relative z-10 cursor-pointer px-5 py-3 text-sm font-semibold transition-colors duration-200 focus:outline-none"
-          :class="activeIndex === index ? 'text-indigo-700' : 'text-gray-500 hover:text-gray-800'"
+          :class="displayIndex === index ? 'text-indigo-700' : 'text-gray-500 hover:text-gray-800'"
           @click="onTabClick(index)"
         >
           {{ item.title }}
@@ -17,7 +17,7 @@
           <!-- Active underline indicator -->
           <span
             class="absolute right-0 bottom-0 left-0 h-0.5 rounded-t-full transition-all duration-300 ease-out"
-            :class="activeIndex === index ? 'bg-indigo-600 opacity-100' : 'bg-transparent opacity-0'"
+            :class="displayIndex === index ? 'bg-indigo-600 opacity-100' : 'bg-transparent opacity-0'"
           />
         </button>
       </div>
@@ -35,9 +35,9 @@
         leave-to-class="opacity-0 -translate-y-2"
       >
         <div
-          :key="activeIndex"
+          :key="displayIndex"
           class="prose prose-sm prose-headings:text-gray-900 prose-a:text-indigo-600 prose-strong:text-gray-800 max-w-none leading-relaxed text-gray-600"
-          v-html="items[activeIndex].content"
+          v-html="items[displayIndex].content"
         />
       </Transition>
     </div>
@@ -46,17 +46,24 @@
 
 <script setup lang="ts">
 import type { TabItemType } from '@/types/tab.type'
-import { ref } from 'vue'
+import { computed } from 'vue'
 
 interface Props {
   items: TabItemType[]
+  activeIndex?: number | null
 }
 
-const { items } = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  activeIndex: () => 0
+})
 
-const activeIndex = ref(0)
+const emit = defineEmits<{
+  'update:activeIndex': [value: number]
+}>()
+
+const displayIndex = computed(() => Math.max(0, props.activeIndex ?? 0))
 
 const onTabClick = (index: number) => {
-  activeIndex.value = index
+  emit('update:activeIndex', index)
 }
 </script>

@@ -7,7 +7,7 @@
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
     />
 
-    <CardGrid :cards="cards" @read-more="handleReadMore" />
+    <CardGrid :cards="cards" />
   </div>
 </template>
 
@@ -24,21 +24,20 @@ const cards: CardDataType[] = [
   {
     imageSrc: cardImg,
     imageAlt: 'Card image 1',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    to: '#'
   },
   {
     imageSrc: cardImg,
     imageAlt: 'Card image 2',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    to: '#'
   },
   {
     imageSrc: cardImg,
     imageAlt: 'Card image 3',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.'
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+    to: '#'
   }
 ]
-
-const handleReadMore = (index: number) => {
-  console.log('Read more clicked for card', index)
-}
 </script>
